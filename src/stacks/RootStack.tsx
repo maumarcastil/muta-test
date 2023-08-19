@@ -2,14 +2,15 @@ import { DefaultTheme, NavigationContainer, Theme } from '@react-navigation/nati
 import * as React from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
+import { theme as customTheme } from '../theme';
 import RootTabs from './RootTabs';
 
 const theme: Theme = {
   ...DefaultTheme,
   colors: {
     ...DefaultTheme.colors,
-    background: '#212121',
-    text: '#ffffff',
+    background: customTheme.colors.backgroundPrimary,
+    text: customTheme.colors.textSecondary,
   },
 };
 
