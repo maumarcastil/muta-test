@@ -7,7 +7,8 @@
       "@/*": ["*"],
       "@pages/*": ["src/pages/*"],
       "@stacks/*": ["src/stacks/*"],
-      "@types/*": ["src/types/*"]
+      "@types/*": ["src/types/*"],
+      "@components/*": ["src/components/*"]
     }
   }
 }
