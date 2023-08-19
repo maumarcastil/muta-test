@@ -5,17 +5,18 @@ import {
   createBottomTabNavigator,
 } from '@react-navigation/bottom-tabs';
 import WalletPage from '../pages/WalletPage';
+import { theme } from '../theme';
 import { OptionsTabBarScreens, StackNames } from '../types/stacks';
 
 const Tab = createBottomTabNavigator();
 
 const bottomTabNavigationOptions: BottomTabNavigationOptions = {
   headerShown: false,
-  tabBarActiveTintColor: '#d8fc3a',
-  tabBarInactiveTintColor: '#9A9A9A',
+  tabBarActiveTintColor: theme.colors.iconActive,
+  tabBarInactiveTintColor: theme.colors.iconInactive,
   tabBarStyle: {
-    backgroundColor: '#171717',
-    borderTopColor: '#171717',
+    backgroundColor: theme.colors.backgroundSecondary,
+    borderTopColor: theme.colors.backgroundSecondary,
     height: 60,
   },
   tabBarItemStyle: {
