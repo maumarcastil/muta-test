@@ -8,7 +8,8 @@
       "@pages/*": ["src/pages/*"],
       "@stacks/*": ["src/stacks/*"],
       "@types/*": ["src/types/*"],
-      "@components/*": ["src/components/*"]
+      "@components/*": ["src/components/*"],
+      "@utils/*": ["src/utils/*"]
     }
   }
 }
