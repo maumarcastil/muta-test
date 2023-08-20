@@ -2,7 +2,8 @@
 
 ## Pre-requisitos
 
-- [Node.js](https://nodejs.org/es) v18.17.*
+
+- [Node.js](https://nodejs.org/es) v18.17.1
 - Android Studio
 - Xcode
 
