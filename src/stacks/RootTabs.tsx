@@ -1,14 +1,14 @@
 import { Feather } from '@expo/vector-icons';
 import HomePage from '@pages/HomePage';
 import {
-  BottomTabNavigationOptions,
+  type BottomTabNavigationOptions,
   createBottomTabNavigator,
 } from '@react-navigation/bottom-tabs';
 import CollectionsPage from '../pages/Collections';
 import ProfilePage from '../pages/Profile';
 import WalletPage from '../pages/WalletPage';
 import { theme } from '../theme';
-import { OptionsTabBarScreens, StackNames } from '../types/stacks';
+import { type OptionsTabBarScreens, StackNames } from '../types/stacks';
 
 const Tab = createBottomTabNavigator();
 
@@ -19,10 +19,6 @@ const bottomTabNavigationOptions: BottomTabNavigationOptions = {
   tabBarStyle: {
     backgroundColor: theme.colors.backgroundSecondary,
     borderTopColor: theme.colors.backgroundSecondary,
-    height: 60,
-  },
-  tabBarItemStyle: {
-    marginVertical: 8,
   },
 };
 

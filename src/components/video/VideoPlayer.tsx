@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-misused-promises */
 import { styling } from '@/src/theme';
 import { Ionicons } from '@expo/vector-icons';
-import { AVPlaybackStatusSuccess, ResizeMode, Video } from 'expo-av';
+import { type AVPlaybackStatusSuccess, ResizeMode, Video } from 'expo-av';
 import * as React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
@@ -14,13 +15,21 @@ const VideoPlayer = ({ urlVideo, textVideo }: VideoPlayerProps) => {
   const video = React.useRef<Video | null>(null);
   const [status, setStatus] = React.useState<AVPlaybackStatusSuccess | null>(null);
 
+  const handlePlayPause = async () => {
+    if (status?.isPlaying === true) {
+      await video?.current?.pauseAsync();
+    } else {
+      await video?.current?.playAsync();
+    }
+  }
+
+
   return (
     <View style={styles.containerVideo}>
       <TouchableOpacity
-        disabled={status?.isPlaying ? false : true}
-        onPress={() =>
-          status?.isPlaying ? video?.current?.pauseAsync() : video?.current?.playAsync()
-        }>
+        disabled={status?.isPlaying === null || status?.isPlaying === undefined || !(status?.isPlaying)}
+        onPress={handlePlayPause}
+        >
         <Video
           ref={video}
           style={styles.video}
@@ -30,14 +39,14 @@ const VideoPlayer = ({ urlVideo, textVideo }: VideoPlayerProps) => {
           useNativeControls={false}
           resizeMode={ResizeMode.COVER}
           isLooping
-          onPlaybackStatusUpdate={(status) => setStatus(() => status as AVPlaybackStatusSuccess)}
+          onPlaybackStatusUpdate={(status) => { setStatus(() => status as AVPlaybackStatusSuccess); }}
         />
 
-        {!status?.isPlaying && (
+        {(status?.isPlaying === null || status?.isPlaying === undefined || !(status?.isPlaying)) && (
           <View style={styles.containerControls}>
             <View style={styles.containerControlsInner}>
               <View style={styles.containerTextVideo}>
-                {textVideo && (
+                {textVideo !== null && (
                   <Text style={[themeStyles.textSecondary, styles.textVideo]}>{textVideo}</Text>
                 )}
               </View>
@@ -45,9 +54,8 @@ const VideoPlayer = ({ urlVideo, textVideo }: VideoPlayerProps) => {
               <View style={styles.containerIconPlay}>
                 <TouchableOpacity
                   style={styles.iconPLay}
-                  onPress={() =>
-                    status?.isPlaying ? video?.current?.pauseAsync() : video?.current?.playAsync()
-                  }>
+                  onPress={handlePlayPause}
+                  >
                   <Ionicons name="play" size={30} color="black" />
                 </TouchableOpacity>
               </View>
