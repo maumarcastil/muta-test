@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { styling } from '../theme';
 
-const WalletPage = () => {
+const ProfilePage = () => {
   const insets = useSafeAreaInsets();
 
   const themeStyles = styling();
@@ -18,7 +18,7 @@ const WalletPage = () => {
         },
       ]}>
       <Text style={[themeStyles.textPrimary, styles.textPrimary]}>Welcome</Text>
-      <Text style={[themeStyles.textSecondary, styles.textSecondary]}>Wallet Page</Text>
+      <Text style={[themeStyles.textSecondary, styles.textSecondary]}>Profile Page</Text>
     </View>
   );
 };
@@ -39,4 +39,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default WalletPage;
+export default ProfilePage;
