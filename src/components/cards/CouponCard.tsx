@@ -8,7 +8,7 @@ interface CuponCardProps {
   coupon: string;
 }
 
-const CuponCard = ({ price, coupon }: CuponCardProps) => {
+const CouponCard = ({ price, coupon }: CuponCardProps) => {
   const themeStyles = styling();
 
   return (
@@ -48,4 +48,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CuponCard;
+export default CouponCard;
