@@ -4,6 +4,8 @@ import {
   BottomTabNavigationOptions,
   createBottomTabNavigator,
 } from '@react-navigation/bottom-tabs';
+import CollectionsPage from '../pages/Collections';
+import ProfilePage from '../pages/Profile';
 import WalletPage from '../pages/WalletPage';
 import { theme } from '../theme';
 import { OptionsTabBarScreens, StackNames } from '../types/stacks';
@@ -66,12 +68,12 @@ const RootTabs = () => {
       />
       <Tab.Screen
         name={StackNames.Collections}
-        component={HomePage}
+        component={CollectionsPage}
         options={optionsTabBarScreens.Collections}
       />
       <Tab.Screen
         name={StackNames.Profile}
-        component={HomePage}
+        component={ProfilePage}
         options={optionsTabBarScreens.Profile}
       />
     </Tab.Navigator>
