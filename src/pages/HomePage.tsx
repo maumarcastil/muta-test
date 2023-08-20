@@ -2,7 +2,7 @@ import CouponCard from '@/src/components/cards/CouponCard';
 import { styling } from '@/src/theme';
 import VideoPlayer from '@components/video/VideoPlayer';
 import * as React from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { LayoutChangeEvent, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import PrimaryButton from '../components/Buttons/PrimaryButton';
 
@@ -27,8 +27,14 @@ const coupons: Coupon[] = [
 ];
 
 const HomePage = () => {
-  const insets = useSafeAreaInsets();
   const themeStyles = styling();
+  const insets = useSafeAreaInsets();
+  const [heightView, setHeightView] = React.useState<number>(0);
+
+  const handleLayout = (event: LayoutChangeEvent) => {
+    const { height } = event.nativeEvent.layout;
+    setHeightView(height);
+  };
 
   return (
     <View
@@ -54,16 +60,39 @@ const HomePage = () => {
             <Text style={[themeStyles.textSecondary, styles.text]}>Lo nuevo</Text>
           </View>
 
-          <View style={styles.containerCupons}>
+          <View
+            style={[
+              styles.containerCupons,
+              {
+                marginBottom: heightView,
+              },
+            ]}>
             {coupons.map((coupon, index) => (
               <CouponCard key={index} price={coupon.price} coupon={coupon.coupon} />
             ))}
           </View>
         </ScrollView>
-      </View>
 
-      <View style={styles.containerCollection}>
-        <PrimaryButton text="Solicitar recolección" />
+        <View
+          onLayout={handleLayout}
+          style={{
+            bottom: 0,
+            width: '100%',
+            alignItems: 'center',
+            position: 'absolute',
+            borderTopLeftRadius: 16,
+            borderTopRightRadius: 16,
+          }}>
+          <View
+            style={{
+              width: '100%',
+              alignItems: 'center',
+              marginVertical: 12,
+              backgroundColor: 'transparent',
+            }}>
+            <PrimaryButton text="Solicitar recolección" />
+          </View>
+        </View>
       </View>
     </View>
   );
@@ -78,6 +107,7 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     flexShrink: 1,
     flexBasis: 'auto',
+    position: 'relative',
   },
   contentContainerStyle: {
     marginHorizontal: 16,
@@ -95,10 +125,11 @@ const styles = StyleSheet.create({
   },
   containerVideo: {
     gap: 8,
-    marginBottom: 32,
+    marginBottom: 16,
   },
   containerCupons: {
     gap: 8,
+    marginBottom: 12,
   },
   containerCollection: {
     flexGrow: 1,
