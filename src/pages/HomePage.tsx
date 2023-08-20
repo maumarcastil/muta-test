@@ -2,7 +2,7 @@ import CouponCard from '@/src/components/cards/CouponCard';
 import { styling } from '@/src/theme';
 import VideoPlayer from '@components/video/VideoPlayer';
 import * as React from 'react';
-import { LayoutChangeEvent, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { type LayoutChangeEvent, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import PrimaryButton from '../components/Buttons/PrimaryButton';
 
@@ -14,15 +14,15 @@ interface Coupon {
 const coupons: Coupon[] = [
   {
     price: 10000,
-    coupon: 'asd-asd-dasda-dads - utilizado',
+    coupon: 'asd-asd-dasda - utilizado',
   },
   {
     price: 15000,
-    coupon: 'asd6-asd7-dasda8-dads9 - utilizado',
+    coupon: 'asd6-asd7-dasda8 - utilizado',
   },
   {
     price: 20000,
-    coupon: 'asd2-asd3-dasda4-dads5 - utilizado',
+    coupon: 'asd2-asd3-dasda4 - utilizado',
   },
 ];
 

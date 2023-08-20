@@ -1,4 +1,4 @@
-import { DefaultTheme, NavigationContainer, Theme } from '@react-navigation/native';
+import { DefaultTheme, NavigationContainer, type Theme } from '@react-navigation/native';
 import * as React from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
