@@ -27,7 +27,7 @@ const VideoPlayer = ({ urlVideo, textVideo }: VideoPlayerProps) => {
   return (
     <View style={styles.containerVideo}>
       <TouchableOpacity
-        disabled={status?.isPlaying === null || status?.isPlaying === undefined}
+        disabled={status?.isPlaying === null || status?.isPlaying === undefined || !(status?.isPlaying)}
         onPress={handlePlayPause}
         >
         <Video
@@ -42,7 +42,7 @@ const VideoPlayer = ({ urlVideo, textVideo }: VideoPlayerProps) => {
           onPlaybackStatusUpdate={(status) => { setStatus(() => status as AVPlaybackStatusSuccess); }}
         />
 
-        {(status?.isPlaying === null || status?.isPlaying === undefined) && (
+        {(status?.isPlaying === null || status?.isPlaying === undefined || !(status?.isPlaying)) && (
           <View style={styles.containerControls}>
             <View style={styles.containerControlsInner}>
               <View style={styles.containerTextVideo}>
