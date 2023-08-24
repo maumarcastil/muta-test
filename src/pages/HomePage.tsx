@@ -2,7 +2,7 @@ import CouponCard from '@/src/components/cards/CouponCard';
 import { styling } from '@/src/theme';
 import VideoPlayer from '@components/video/VideoPlayer';
 import * as React from 'react';
-import { type LayoutChangeEvent, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { type LayoutChangeEvent, StyleSheet, Text, View, FlatList } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import PrimaryButton from '../components/Buttons/PrimaryButton';
 
@@ -19,6 +19,14 @@ const coupons: Coupon[] = [
   {
     price: 15000,
     coupon: 'asd6-asd7-dasda8 - utilizado',
+  },
+  {
+    price: 20000,
+    coupon: 'asd2-asd3-dasda4 - utilizado',
+  },
+  {
+    price: 20000,
+    coupon: 'asd2-asd3-dasda4 - utilizado',
   },
   {
     price: 20000,
@@ -46,33 +54,32 @@ const HomePage = () => {
         },
       ]}>
       <View style={styles.containerContent}>
-        <ScrollView contentContainerStyle={styles.contentContainerStyle}>
-          <View style={styles.containerWelcome}>
-            <Text style={[themeStyles.textTertiary, styles.text]}>Buenas tardes mutante,</Text>
-            <Text style={[themeStyles.textSecondary, styles.textName]}>Jeffrey Saavedra</Text>
+        <FlatList
+        data={coupons}
+        keyExtractor={(_ , index) => index.toString()}
+        contentContainerStyle={styles.contentContainerStyle}
+        renderItem={({item, index}) => (
+          <View style={ coupons.length - 1 === index ? {marginBottom: heightView} : {marginBottom: 8} } > 
+            <CouponCard price={item.price} coupon={item.coupon} />
           </View>
+        )}
+        ListHeaderComponent={() => (
+          <>
+            <View style={styles.containerWelcome}>
+              <Text style={[themeStyles.textTertiary, styles.text]}>Buenas tardes mutante,</Text>
+              <Text style={[themeStyles.textSecondary, styles.textName]}>Jeffrey Saavedra</Text>
+            </View>
 
-          <View style={styles.containerVideo}>
-            <VideoPlayer
-              urlVideo="http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4"
-              textVideo="Conoce nuestra FUERZA MUTANTE"
-            />
-            <Text style={[themeStyles.textSecondary, styles.text]}>Lo nuevo</Text>
-          </View>
-
-          <View
-            style={[
-              styles.containerCupons,
-              {
-                marginBottom: heightView,
-              },
-            ]}>
-            {coupons.map((coupon, index) => (
-              <CouponCard key={index} price={coupon.price} coupon={coupon.coupon} />
-            ))}
-          </View>
-        </ScrollView>
-
+            <View style={styles.containerVideo}>
+              <VideoPlayer
+                urlVideo="http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4"
+                textVideo="Conoce nuestra FUERZA MUTANTE"
+              />
+              <Text style={[themeStyles.textSecondary, styles.text]}>Lo nuevo</Text>
+            </View>
+          </>
+        )}
+        />
         <View
           onLayout={handleLayout}
           style={{
